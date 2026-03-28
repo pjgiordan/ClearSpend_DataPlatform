@@ -1,2 +1,3 @@
 .DS_Store
 data/raw/transactions_data.csv
+01_data/raw/transactions_data.csv
