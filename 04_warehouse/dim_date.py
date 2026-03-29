@@ -44,7 +44,7 @@ dim_date = pd.DataFrame({
     "day":         date_range.day,
     "day_of_week": date_range.dayofweek + 1,  # 1=Monday, 7=Sunday
     "day_name":    date_range.strftime("%A"),
-    "is_weekend":  (date_range.dayofweek >= 5).astype(int),  # 1 if Sat/Sun
+    "is_weekend":  (date_range.dayofweek >= 5),  # True if Sat/Sun
 })
 
 # Add surrogate key as first column
@@ -67,7 +67,7 @@ cursor.execute("""
         day         INTEGER,
         day_of_week INTEGER,
         day_name    VARCHAR(10),
-        is_weekend  INTEGER
+        is_weekend  BOOLEAN
     )
 """)
 
