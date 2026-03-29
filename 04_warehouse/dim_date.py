@@ -1,8 +1,5 @@
 # =============================================================================
 # ClearSpend Data Platform - Curated Layer
-# Script: dim_date.py
-# Purpose: Generate calendar dimension covering the full transaction date range
-# Source: transformation.transactions → Target: curated.dim_date
 # =============================================================================
 
 import psycopg2

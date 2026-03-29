@@ -1,8 +1,5 @@
 # =============================================================================
 # ClearSpend Data Platform - Curated Layer
-# Script: dim_customer.py
-# Purpose: Build customer dimension with surrogate key
-# Source: transformation.users → Target: curated.dim_customer
 # =============================================================================
 
 import psycopg2

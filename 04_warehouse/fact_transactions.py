@@ -1,10 +1,5 @@
 # =============================================================================
 # ClearSpend Data Platform - Curated Layer
-# Script: fact_transactions.py
-# Purpose: Build central fact table joining all dimension surrogate keys
-# Grain: one row per transaction
-# Source: transformation.transactions + all curated dimensions
-# Target: curated.fact_transactions
 # =============================================================================
 
 import psycopg2

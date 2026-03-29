@@ -1,8 +1,6 @@
 # =============================================================================
 # ClearSpend Data Platform - Curated Layer
 # Script: dim_merchant.py
-# Purpose: Build merchant dimension using most frequent city/state per merchant
-# Source: transformation.transactions → Target: curated.dim_merchant
 # Note: No separate merchants file exists — derived directly from transactions
 # =============================================================================
 

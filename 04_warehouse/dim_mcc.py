@@ -1,8 +1,6 @@
 # =============================================================================
 # ClearSpend Data Platform - Curated Layer
 # Script: dim_mcc.py
-# Purpose: Build merchant category code dimension
-# Source: transformation.mcc → Target: curated.dim_mcc
 # Note: updated_by is intentionally excluded — no business value in warehouse
 # =============================================================================
 

@@ -1,8 +1,5 @@
 # =============================================================================
 # ClearSpend Data Platform - Curated Layer
-# Script: dim_card.py
-# Purpose: Build card dimension with surrogate key
-# Source: transformation.cards → Target: curated.dim_card
 # =============================================================================
 
 import psycopg2
@@ -63,12 +60,12 @@ cursor.execute("""
         card_number             VARCHAR(20),
         expires                 VARCHAR(10),
         cvv                     VARCHAR(3),
-        has_chip                VARCHAR(5),
+        has_chip                BOOLEAN,
         num_cards_issued        INTEGER,
         credit_limit            DECIMAL(18,2),
         acct_open_date          VARCHAR(10),
         year_pin_last_changed   INTEGER,
-        card_on_dark_web        VARCHAR(3),
+        card_on_dark_web        BOOLEAN,
         issuer_bank_name        VARCHAR(100),
         issuer_bank_state       VARCHAR(3),
         issuer_bank_type        VARCHAR(20),
