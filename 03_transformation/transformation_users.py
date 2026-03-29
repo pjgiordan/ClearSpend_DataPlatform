@@ -1,7 +1,5 @@
 # =============================================================================
 # ClearSpend Data Platform - Transformation Layer
-# Script: clean_users.py
-# Source: ingestion.users → Target: transformation.users
 # =============================================================================
 
 import psycopg2

@@ -1,7 +1,5 @@
 # =============================================================================
 # ClearSpend Data Platform - Transformation Layer
-# Script: clean_cards.py
-# Source: ingestion.cards → Target: transformation.cards
 # =============================================================================
 
 import psycopg2
@@ -87,8 +85,8 @@ df["acct_open_date"] = df["acct_open_date"].fillna("Unknown")
 df["cvv"] = df["cvv"].apply(
     lambda x: str(int(float(x))).zfill(3) if pd.notna(x) and x != "" else None
 )
-# Standardize has_chip to consistent Yes/No casing
-df["has_chip"] = df["has_chip"].str.strip().replace({"YES": "Yes", "NO": "No"})
+# Convert has_chip to boolean
+df["has_chip"] = df["has_chip"].str.strip().str.upper().map({"YES": True, "NO": False})
 
 df["num_cards_issued"] = pd.to_numeric(df["num_cards_issued"], errors="coerce")
 
@@ -112,8 +110,8 @@ df["credit_limit"] = df["credit_limit"].apply(parse_credit_limit)
 
 df["year_pin_last_changed"] = pd.to_numeric(df["year_pin_last_changed"], errors="coerce")
 
-# card_on_dark_web is already clean (only 'No') — strip whitespace only
-df["card_on_dark_web"] = df["card_on_dark_web"].str.strip()
+# Convert card_on_dark_web to boolean
+df["card_on_dark_web"] = df["card_on_dark_web"].str.strip().str.upper().map({"YES": True, "NO": False})
 
 # Standardize issuer_bank_name — abbreviations, casing variants, and Chase/JPMorgan merged
 df["issuer_bank_name"] = df["issuer_bank_name"].str.strip()
@@ -176,12 +174,12 @@ cursor.execute("""
         card_number             VARCHAR(20),
         expires                 VARCHAR(10),
         cvv                     VARCHAR(3),
-        has_chip                VARCHAR(5),
+        has_chip                BOOLEAN,
         num_cards_issued        INTEGER,
         credit_limit            DECIMAL(18,2),
         acct_open_date          VARCHAR(10),
         year_pin_last_changed   INTEGER,
-        card_on_dark_web        VARCHAR(3),
+        card_on_dark_web        BOOLEAN,
         issuer_bank_name        VARCHAR(100),
         issuer_bank_state       VARCHAR(3),
         issuer_bank_type        VARCHAR(20),

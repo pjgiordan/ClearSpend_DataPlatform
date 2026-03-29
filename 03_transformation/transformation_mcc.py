@@ -1,7 +1,5 @@
 # =============================================================================
 # ClearSpend Data Platform - Transformation Layer
-# Script: clean_mcc.py
-# Source: ingestion.mcc → Target: transformation.mcc
 # =============================================================================
 
 import psycopg2
