@@ -95,8 +95,11 @@ def parse_credit_limit(val):
     if val is None or (isinstance(val, float) and pd.isna(val)):
         return 0.0
     val = str(val).strip().replace("$", "").replace(",", "")
-    if val.lower() in ["n/a", "error_value", "9999999", ""]:
-        return 0.0
+    if val.lower() in ["n/a", "error_value", "limit_unknown", "9999999", ""]:
+        return None
+    word_map = {"ten thousand": 10000.0}
+    if val.lower() in word_map:
+        return word_map[val.lower()]
     if val.lower().endswith("k"):
         try: return float(val[:-1]) * 1_000
         except ValueError: pass
@@ -104,7 +107,7 @@ def parse_credit_limit(val):
         try: return float(val[:-1]) * 1_000_000
         except ValueError: pass
     try: return abs(float(val))
-    except ValueError: return 0.0
+    except ValueError: return None
 
 df["credit_limit"] = df["credit_limit"].apply(parse_credit_limit)
 
